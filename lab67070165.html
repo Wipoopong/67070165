@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewsport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+    <div class="profile" id="profile">
+        <div class="notify">
+            <p style="color: #FFFFFF;">1</p>
+        </div>
+    </div>
+    <h1 id="user">Username, ok</h1><br>
+    <label>Set username </label><input type="text" id="name"><button onclick="setName()">Set</button><br><br>
+    <label>Set profile image </label><input type="text" id="prourl"><button onclick="setImg()">Set</button><br><br>
+    <!-- <label>Set name </label><input type="text" id="name"><button onclick="setName()">Set</button><br><br>
+    <label>Set tel </label><input type="text" id="name"><button onclick="setName()">Set</button><br><br> -->
+    <div style="display: flex; gap: 10px;">
+        <input type="text" id="phonename"><input type="text" id="phone"><button
+        onclick="addParagraph()">ADD</button>
+        <button onclick="saveCSV()">EXPORT</button>
+    </div>
+   <br><br>
+   <table border="1" style="width: 500px;">
+    <tr>
+      <th>No.</th>
+      <th>Name</th>
+      <th>Phone Number</th>
+    </tr>
+    <tbody id="phonetable">
+    </tbody>
+    <!-- <tr>
+      <td>Alfreds Futterkiste</td>
+      <td>Maria Anders</td>
+      <td>Germany</td>
+    </tr>
+    <tr>
+      <td>Centro comercial Moctezuma</td>
+      <td>Francisco Chang</td>
+      <td>Mexico</td>
+    </tr> -->
+    </table>
+    <div class="container">
+    </div>
+    <script>
+        const username = document.getElementById("user");
+        const input = document.getElementById("name");
+        const profile = document.getElementById("profile");
+        const prourl = document.getElementById("prourl");
+        const newdiv = document.getElementsByClassName("container");
+
+        const phones = [];
+
+        function setName() {
+            username.textContent = input.value + ", ok";
+            console.log(input.value);
+        }
+        function setImg() {
+            profile.style.backgroundImage = "url(" + prourl.value + ")";
+            console.log(prourl.value);
+            prourl.value = "";
+        }
+        function addParagraph() {
+            const phonename = document.getElementById("phonename").value;
+            const phone = document.getElementById("phone").value;
+            phones.push({
+                name: phonename,
+                phone: phone
+            });
+
+            document.getElementById("phonetable").innerHTML = phones.map((p, idx) => `<tr>
+                <td>${idx + 1}</td>
+                <td>${p.name}</td>
+                <td>${p.phone}</td>
+            </tr>`).join("");
+        }
+        function saveCSV() {
+        const csvContent = phonename.map(row => row.join(",")).join("\n"); // Convert array to CSV string
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", "data.csv");
+        link.style.visibility = "hidden";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+};
+    </script>
+    <style>
+
+    </style>
+</body>
+</html>

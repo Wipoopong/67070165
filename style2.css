@@ -43,3 +43,27 @@ img {
 .grid-container {
     display: grid;
     }
+
+.profile{
+    width: 300px;
+    height: 300px;
+    background-image: url(https://styles.redditmedia.com/t5_78lhiu/styles/communityIcon_z2uhq0v0z7v91.png);
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    position: relative;
+}
+
+.notify{
+    width: 40px;
+    height: 40px;
+    background-color: #0045E4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
+}
+
